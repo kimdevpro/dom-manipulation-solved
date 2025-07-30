@@ -12,7 +12,7 @@
  */
 
 // Your code goes here...
-
+const allItems = document.querySelectorAll('.item');
 
 
 /**
@@ -24,7 +24,7 @@
 
 // Your code goes here...
 
-
+const sortBtn = document.querySelectorAll(".sortBtn");
 
 /**
  * @task
@@ -38,8 +38,26 @@
  */
 
 // Your code goes here...
+const sortAscending = (a, b) => {
+      if (a.innerHTML < b.innerHTML) return -1;
+      else if (a.innerHTML > b.innerHTML) return 1;
+      else return 0;
+};
 
+const sortDescending = (a, b) => {
+      if (a.innerHTML < b.innerHTML) return 1;
+      else if (a.innerHTML > b.innerHTML) return -1;
+      else return 0;
+};
 
+function sortData(direction) {
+    const container = document.getElementById('main');
+    const itemsArray = Array.from(allItems);
+    const sortedItems = direction === "asc"  ? itemsArray.sort(sortAscending) : itemsArray.sort(sortDescending);
+
+    container.innerHTML = "";
+    sortedItems.forEach(item => container.appendChild(item));
+};
 
 /**
  * @task
@@ -49,6 +67,11 @@
  * * Make the sortData function call, assign the item's dataset sortdir property
  */
 
-// Your code goes here...
-
+//Your code goes here...
+sortBtn.forEach(button => {
+    button.addEventListener('click', () => {
+        const direction = button.dataset.sortdir;
+        sortData(direction);
+    });
+});
 
