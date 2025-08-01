@@ -52,6 +52,16 @@ function updateCollections(id, direction) {
     ? document.getElementById("favs")
     : document.getElementById("main");
 
+    const item = document.getElementById(id);
+    const icon = item.querySelector("i");
+    // Change icon based on direction
+    if (direction === "toFavs") {
+        icon.classList.remove("fa-heart-circle-plus");
+        icon.classList.add("fa-heart-crack");
+    } else {
+        icon.classList.remove("fa-heart-crack");
+        icon.classList.add("fa-heart-circle-plus");
+    }
     targetContainer.appendChild(document.getElementById(id));
 }
 
